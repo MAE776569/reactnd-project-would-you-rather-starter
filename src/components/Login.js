@@ -1,10 +1,17 @@
 import React, { Component } from "react"
 import logo from "../logo.png"
+import { connect } from "react-redux"
+import { handleGetUsers } from "../actions/users"
 
 class Login extends Component {
+
+  componentDidMount(){
+    this.props.dispatch(handleGetUsers())
+  }
+
   render() {
     return (
-      <div className="containter">
+      <div className="container">
         <div className="row justify-content-center">
           <div className="col-10 col-md-7 col-lg-5">
             <div className="card mt-5">
@@ -20,6 +27,11 @@ class Login extends Component {
                     <option value="Select User" disabled>
                       Select User...
                     </option>
+                    {Object.keys(this.props.users).map(user => (
+                      <option key={user} value={user}>
+                        {this.props.users[user].name}
+                      </option>
+                    ))}
                   </select>
                   <input
                     type="submit"
@@ -36,4 +48,8 @@ class Login extends Component {
   }
 }
 
-export default Login
+function mapStateToProps(state){
+  return { users: state.users }
+}
+
+export default connect(mapStateToProps)(Login)
