@@ -9,9 +9,11 @@ function getUsers(users){
   }
 }
 
-export function handleGetUsers(){
+export function handleGetUsers(){  
   return (dispatch) => {
     return _getUsers()
-      .then(users => dispatch(getUsers(users)))
+      .then(users => {
+        dispatch(getUsers(users))
+      })
   }
 }
