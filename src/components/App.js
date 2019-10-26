@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, Route } from "react-router-dom"
 import Login from "./Login"
 import Navbar from "./Navbar"
 import { LoadingBar } from "react-redux-loading-bar"
@@ -9,7 +9,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <LoadingBar />
-      <Login />
+      <Route exact path="/" render={() => <div>HOME</div>} />
+      <Route path="/login" component={Login} />
     </BrowserRouter>
   );
 }
