@@ -12,6 +12,54 @@ code {
     monospace;
 }
 
-.opacity-7{
+.opacity-7 {
   opacity: 0.7;
+}
+.nav-link:hover,
+.logout-btn:hover,
+.nav-link.active {
+  background-color: #138496;
+  color: white !important;
+}
+.nav-link.active,
+.nav-link:hover {
+  border-radius: 0.25rem;
+}
+.header-welcome {
+  font-size: 1.1em;
+}
+.header-lead {
+  font-size: 1em !important;
+}
+.user-avatar{
+  max-width: 40px;
+  max-height: 40px;
+}
+.navbar{
+  min-height: 60px;
+}
+.nav-item {
+  padding: 0.25rem;
+}
+.dropdown-toggle{
+  width: 100%;
+  text-align: left !important;
+  background-color: white !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+.dropdown-toggle::after{
+  position: absolute;
+  top: 17px;
+  right: 15px;
+}
+.dropdown-menu {
+  width: 100%;
+}
+.dropdown-item {
+  display: inline-block !important;
+}
+.user-option-avatar {
+  max-width: 30px;
+  max-height: 30px;
+  vertical-align: middle;
 }
