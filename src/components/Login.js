@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { handleGetUsers } from "../actions/users"
 import { authenticateUser } from "../actions/authedUser"
 import { Dropdown } from "react-bootstrap"
-import { withRouter } from "react-router-dom"
+import { withRouter, Redirect } from "react-router-dom"
 
 class Login extends Component {
   state = {
@@ -27,7 +27,10 @@ class Login extends Component {
   }
 
   render() {
-    const { users } = this.props
+    const { users, authedUser } = this.props
+
+    if(authedUser)
+      return <Redirect to="/" />
 
     return (
       <div className="container">
@@ -93,7 +96,10 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users }
+  return {
+    users: state.users,
+    authedUser: state.authedUser
+  }
 }
 
 export default withRouter(connect(mapStateToProps)(Login))

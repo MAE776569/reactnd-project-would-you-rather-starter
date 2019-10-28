@@ -8,7 +8,7 @@ class Navbar extends Component {
 
   handleLogout = () => {
     this.props.dispatch(logoutUser())
-    this.props.history.push("/")
+    this.props.history.push("/login")
   }
 
   render() {
@@ -18,7 +18,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <ul className="navbar-nav ml-5">
           <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" to="/">
+            <NavLink className="nav-link" activeClassName="active" exact to="/">
               Home
             </NavLink>
           </li>
