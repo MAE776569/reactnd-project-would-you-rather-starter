@@ -1,6 +1,13 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
+import { handleGetQuestions } from "../actions/questions"
 
 class Home extends Component {
+
+  componentDidMount(){
+    this.props.dispatch(handleGetQuestions())
+  }
+
   render() {
     return (
       <div className="container mt-5">
@@ -32,4 +39,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default connect()(Home)
