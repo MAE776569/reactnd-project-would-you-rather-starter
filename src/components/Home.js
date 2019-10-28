@@ -1,14 +1,25 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { handleGetQuestions } from "../actions/questions"
+import Question from "./Question"
+import { Redirect } from "react-router-dom"
 
 class Home extends Component {
+  state = {
+    showAnsweredQuestions: false
+  }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handleGetQuestions())
   }
 
   render() {
+    if (!this.props.authedUser) return <Redirect to="/login" />
+
+    const { answeredQuestions, unansweredQuestions, authedUser } = this.props
+    const { showAnsweredQuestions } = this.state
+    const questions = showAnsweredQuestions ? answeredQuestions : unansweredQuestions
+
     return (
       <div className="container mt-5">
         <div className="row justify-content-center">
@@ -17,20 +28,35 @@ class Home extends Component {
               <div className="card-header p-0">
                 <ul className="nav nav-tabs nav-fill home-nav">
                   <li className="nav-item p-0">
-                    <a className="nav-link home-link active"
+                    <a className={
+                        showAnsweredQuestions
+                          ? "nav-link home-link"
+                          : "nav-link home-link active"
+                      }
                       href="#unanswered">
                       Unanswered Questions
                     </a>
                   </li>
                   <li className="nav-item p-0">
-                    <a className="nav-link home-link"
+                    <a className={
+                        showAnsweredQuestions
+                          ? "nav-link home-link active"
+                          : "nav-link home-link"
+                      }
                       href="#answered">
                       Answered Questions
                     </a>
                   </li>
                 </ul>
               </div>
-              <div className="card-body"></div>
+              <div className="card-body">
+                <ul className="list-unstyled">
+                  {questions.map(question => (
+                    <Question key={question.id}
+                      user={authedUser} question={question}/>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -39,4 +65,24 @@ class Home extends Component {
   }
 }
 
-export default connect()(Home)
+function mapStatetoProps(state) {
+  const authedUser = state.authedUser ? state.users[state.authedUser] : null
+  if (authedUser) {
+    let userAnswers = Object.keys(authedUser.answers)
+
+    const answeredQuestions = userAnswers.map(id => state.questions[id])
+    const unansweredQuestions = Object.keys(state.questions)
+      .filter(id => !userAnswers.includes(id))
+      .map(id => state.questions[id])
+
+    return {
+      authedUser,
+      answeredQuestions,
+      unansweredQuestions
+    }
+  }
+
+  return { authedUser }
+}
+
+export default connect(mapStatetoProps)(Home)
