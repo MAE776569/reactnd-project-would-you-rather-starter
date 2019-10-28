@@ -33,10 +33,10 @@ class Login extends Component {
       return <Redirect to="/" />
 
     return (
-      <div className="container">
+      <div className="container mt-5">
         <div className="row justify-content-center">
           <div className="col-10 col-md-7 col-lg-5">
-            <div className="card mt-5">
+            <div className="card">
               <div className="card-header text-center">
                 <h5 className="header-welcome">
                   Welcome to the Would You Rather App!

@@ -18,17 +18,17 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <ul className="navbar-nav ml-5">
           <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" exact to="/">
+            <NavLink className="nav-link navbar-link" activeClassName="active" exact to="/">
               Home
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" to="/new">
+            <NavLink className="nav-link navbar-link" activeClassName="active" to="/new">
               New Question
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" activeClassName="active" to="/leaderboard">
+            <NavLink className="nav-link navbar-link" activeClassName="active" to="/leaderboard">
               Leader Board
             </NavLink>
           </li>

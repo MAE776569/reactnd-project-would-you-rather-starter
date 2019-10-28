@@ -15,14 +15,14 @@ code {
 .opacity-7 {
   opacity: 0.7;
 }
-.nav-link:hover,
-.logout-btn:hover,
-.nav-link.active {
+.navbar-link.active{
+  color:  #138496 !important;
+  font-weight: 600;
+}
+.navbar-link:hover,
+.logout-btn:hover {
   background-color: #138496;
   color: white !important;
-}
-.nav-link.active,
-.nav-link:hover {
   border-radius: 0.25rem;
 }
 .header-welcome {
@@ -62,4 +62,18 @@ code {
   max-width: 30px;
   max-height: 30px;
   vertical-align: middle;
+}
+.home-nav{
+  border: 0 !important;
+}
+.home-link{
+  background-color: #eff2f5 !important;
+  border-width: 0 !important;
+  color: rgba(0, 0, 0, 0.7);
+}
+.home-link.active{
+  color:  #138496 !important;
+  background-color: white !important;
+  border-color: #dee2e6 #dee2e6 #fff !important;
+  font-weight: 600;
 }
