@@ -13,14 +13,19 @@ class Home extends Component {
     this.props.dispatch(handleGetQuestions())
   }
 
+  setQuestions = (showAnsweredQuestions) => {
+    if(this.state.showAnsweredQuestions !== showAnsweredQuestions)
+      this.setState({ showAnsweredQuestions })
+  }
+
   render() {
     if (!this.props.authedUser) return <Redirect to="/login" />
 
-    const { answeredQuestions, unansweredQuestions, authedUser } = this.props
+    const { answeredQuestions, unansweredQuestions, users } = this.props
     const { showAnsweredQuestions } = this.state
     const questions = showAnsweredQuestions ? answeredQuestions : unansweredQuestions
 
-    return (
+    return ( questions &&
       <div className="container mt-5">
         <div className="row justify-content-center">
           <div className="col-10 col-md-8 col-lg-6">
@@ -28,24 +33,24 @@ class Home extends Component {
               <div className="card-header p-0">
                 <ul className="nav nav-tabs nav-fill home-nav">
                   <li className="nav-item p-0">
-                    <a className={
+                    <button className={
                         showAnsweredQuestions
-                          ? "nav-link home-link"
-                          : "nav-link home-link active"
+                          ? "btn-block nav-link home-link"
+                          : "btn-block nav-link home-link active"
                       }
-                      href="#unanswered">
+                      onClick={() => this.setQuestions(false)}>
                       Unanswered Questions
-                    </a>
+                    </button>
                   </li>
                   <li className="nav-item p-0">
-                    <a className={
+                    <button className={
                         showAnsweredQuestions
-                          ? "nav-link home-link active"
-                          : "nav-link home-link"
+                          ? "btn-block nav-link home-link active"
+                          : "btn-block nav-link home-link"
                       }
-                      href="#answered">
+                      onClick={() => this.setQuestions(true)}>
                       Answered Questions
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -53,7 +58,7 @@ class Home extends Component {
                 <ul className="list-unstyled">
                   {questions.map(question => (
                     <Question key={question.id}
-                      user={authedUser} question={question}/>
+                      user={users[question.author]} question={question}/>
                   ))}
                 </ul>
               </div>
@@ -78,7 +83,8 @@ function mapStatetoProps(state) {
     return {
       authedUser,
       answeredQuestions,
-      unansweredQuestions
+      unansweredQuestions,
+      users: state.users
     }
   }
 

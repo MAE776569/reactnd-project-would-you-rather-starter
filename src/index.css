@@ -36,7 +36,7 @@ code {
   max-height: 40px;
 }
 .navbar{
-  min-height: 60px;
+  min-height: 55px;
 }
 .nav-item {
   padding: 0.25rem;
@@ -76,4 +76,10 @@ code {
   background-color: white !important;
   border-color: #dee2e6 #dee2e6 #fff !important;
   font-weight: 600;
+}
+.home-link:hover{
+  color: rgba(0, 0, 0, 0.7);
+}
+.question-avatar{
+  border-right: 1px solid rgba(175, 176, 177, 0.7);
 }
