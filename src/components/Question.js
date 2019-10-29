@@ -1,6 +1,7 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
-function Question({ user, question, match }) {
+function Question({ user, question, answered }) {
   return (
     <div className="card mb-3">
       <div className="card-header">
@@ -16,11 +17,21 @@ function Question({ user, question, match }) {
           <div className="card-body">
             <h5 className="card-title">Would you rather</h5>
             <p className="card-text">
-              <small>..{question.optionOne.text.split(" ").slice(0, 2).join(" ")}..</small>
+              <small>..{question.optionOne.text
+                  .split(" ")
+                  .slice(0, 2)
+                  .join(" ")}..</small>
             </p>
-            <a href="#dafd" className="btn btn-block btn-outline-info">
+            <Link
+              to={{
+                pathname: `/question/${question.id}`,
+                state: {
+                  answered
+                }
+              }}
+              className="btn btn-block btn-outline-info">
               View Poll
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -58,7 +58,9 @@ class Home extends Component {
                 <ul className="list-unstyled">
                   {questions.map(question => (
                     <Question key={question.id}
-                      user={users[question.author]} question={question}/>
+                      user={users[question.author]}
+                      question={question}
+                      answered={this.state.showAnsweredQuestions}/>
                   ))}
                 </ul>
               </div>
