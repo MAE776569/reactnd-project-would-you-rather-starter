@@ -2,7 +2,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar"
 import { _getQuestions, _saveQuestionAnswer } from "../utils/_DATA"
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
-export const SAVE_QUESTION = "SAVE_QUESTION"
+export const SAVE_QUESTION_ANSWER = "SAVE_QUESTION_ANSWER"
 
 function getQuestions(questions){
   return {
@@ -22,22 +22,28 @@ export function handleGetQuestions(){
   }
 }
 
-function saveQuestion(question){
+function saveQuestion(authedUser, id, answer){
   return {
-    type: SAVE_QUESTION,
-    question
+    type: SAVE_QUESTION_ANSWER,
+    id,
+    authedUser,
+    answer
   }
 }
 
-export function handleSaveQuestion(authedUser, question, answer){
+export function handleSaveQuestion(authedUser, questionId, answer){
   return (dispatch) => {
     dispatch(showLoading())
     return _saveQuestionAnswer({
       authedUser,
-      qid: question.id,
+      qid: questionId,
       answer
-    }).then((question) => {
-      dispatch(saveQuestion(question))
+    }).then(() => {
+      dispatch(saveQuestion(
+        authedUser,
+        questionId,
+        answer
+      ))
       dispatch(hideLoading())
     })
   }
