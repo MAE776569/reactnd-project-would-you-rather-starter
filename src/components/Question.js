@@ -8,12 +8,12 @@ function Question({ user, question, answered }) {
         <h5>{user.name} asks:</h5>
       </div>
       <div className="row no-gutters">
-        <div className="col-md-4 d-flex flex-wrap align-items-center">
+        <div className="col-4 d-flex flex-wrap align-items-center">
           <img src={user.avatarURL}
             className="d-block m-auto question-avatar"
             alt={`${user.name}'s avatar`}/>
         </div>
-        <div className="col-md-8">
+        <div className="col-8">
           <div className="card-body">
             <h5 className="card-title">Would you rather</h5>
             <p className="card-text">

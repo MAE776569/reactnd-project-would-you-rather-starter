@@ -15,7 +15,7 @@ class QuestionDetail extends Component {
     return (
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-8 col-md-7 col-lg-5 mt-3 mx-auto p-0">
+          <div className="col-10 col-md-8 col-lg-6 mt-3 mx-auto p-0">
             <div className="card">
               {answered ? (
                 <QuestionAnswer
