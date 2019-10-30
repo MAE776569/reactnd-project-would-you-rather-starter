@@ -83,3 +83,20 @@ code {
 .question-avatar{
   border-right: 1px solid rgba(175, 176, 177, 0.7);
 }
+.selected-option{
+  background-color: rgba(19, 132, 150, 0.25) !important;
+  border: 1px solid rgb(19, 132, 150) !important;
+}
+.font-weight-600{
+  font-weight: 600;
+}
+.vote-badge{
+  position: absolute;
+  top: -25px;
+  right: -20px;
+  border-radius: 50% !important;
+  height: 57px;
+  width: 57px;
+  white-space: normal !important;
+  padding: 4% !important;
+}

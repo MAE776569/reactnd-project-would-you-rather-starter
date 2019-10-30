@@ -19,6 +19,7 @@ class QuestionDetail extends Component {
             <div className="card">
               {answered ? (
                 <QuestionAnswer
+                  authedUser={authedUser}
                   user={user}
                   question={question} />
               ) : (
