@@ -1,23 +1,27 @@
 import React, { Component } from "react"
+import { handleSaveQuestion } from "../actions/questions"
+import { connect } from "react-redux"
 
 class QuestionForm extends Component {
   state = {
     selectedAnswer: "optionOne"
   }
 
-  handleChange = e => {
-    console.log(this.state.selectedAnswer)
+  handleChange = (e) => {
     this.setState({
       selectedAnswer: e.target.value
     })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
+    const { authedUser, question, dispatch } = this.props
+    const { selectedAnswer } = this.state
+    dispatch(handleSaveQuestion(authedUser, question.id, selectedAnswer))
   }
 
   render() {
-    const { authedUser, user, question } = this.props
+    const { user, question } = this.props
 
     return (
       <>
@@ -73,4 +77,4 @@ class QuestionForm extends Component {
   }
 }
 
-export default QuestionForm
+export default connect()(QuestionForm)

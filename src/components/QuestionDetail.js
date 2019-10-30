@@ -5,10 +5,11 @@ import QuestionForm from "./QuestionForm"
 
 class QuestionDetail extends Component {
   render() {
-    const { authedUser, user, question } = this.props
-    const { answered } = this.props.location.state
-    console.log(answered)
+    const { authedUser } = this.props
     if (!authedUser) return <Redirect to="/login" />
+
+    const { answered } = this.props.location.state
+    const { user, question } = this.props
 
     return (
       <div className="container">
