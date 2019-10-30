@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import QuestionForm from "./QuestionForm"
+import QuestionAnswer from "./QuestionAnswer"
 
 class QuestionDetail extends Component {
   render() {
@@ -17,13 +18,14 @@ class QuestionDetail extends Component {
           <div className="col-8 col-md-7 col-lg-5 mt-3 mx-auto p-0">
             <div className="card">
               {answered ? (
-                ""
+                <QuestionAnswer
+                  user={user}
+                  question={question} />
               ) : (
                 <QuestionForm
                   authedUser={authedUser}
                   user={user}
-                  question={question}
-                />
+                  question={question}/>
               )}
             </div>
           </div>
