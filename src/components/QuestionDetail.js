@@ -21,9 +21,9 @@ class QuestionDetail extends Component {
     const { user, question } = this.props
 
     return (
-      <div className="container">
+      <div className="container mt-5">
         <div className="row justify-content-center">
-          <div className="col-10 col-md-8 col-lg-6 mt-3 mx-auto p-0">
+          <div className="col-10 col-md-8 col-lg-6 p-0">
             <div className="card">
               {answered || this.state.submitted ? (
                 <QuestionAnswer
