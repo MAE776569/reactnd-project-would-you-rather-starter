@@ -3,6 +3,26 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 
 class NewQuestion extends Component{
+  state = {
+    optionOne: "",
+    optionTwo: ""
+  }
+
+  componentDidMount(){
+    this.input.focus()
+  }
+
+  isDisabled = () => {
+    return !(this.state.optionOne && this.state.optionTwo)
+  }
+
+  handleChange = (e, option) => {
+    if(option)
+      this.setState({ optionOne: e.target.value })
+    else
+      this.setState({ optionTwo: e.target.value })
+  }
+
   render(){
     if(!this.props.authedUser) return <Redirect to="/login" />
 
@@ -19,6 +39,21 @@ class NewQuestion extends Component{
                   <p>Complete the question:</p>
                   <h5>Would you rather...</h5>
                 </div>
+                <form>
+                  <input type="text" className="form-control mb-3"
+                    placeholder="Enter option one text here"
+                    value={this.state.optionOne}
+                    onChange={(e) => this.handleChange(e, true)}
+                    ref={(input) => this.input = input} />
+                  <p className="text-center font-weight-bold">OR</p>
+                  <input type="text" className="form-control mb-3"
+                    placeholder="Enter option two text here"
+                    value={this.state.optionTwo}
+                    onChange={(e) => this.handleChange(e, false)} />
+                  <input type="submit" value="Submit" 
+                    className="btn btn-block btn-info"
+                    disabled={this.isDisabled()} />
+                </form>
               </div>
             </div>
           </div>
