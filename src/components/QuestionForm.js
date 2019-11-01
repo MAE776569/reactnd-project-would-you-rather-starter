@@ -15,9 +15,10 @@ class QuestionForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { authedUser, question, dispatch } = this.props
+    const { authedUser, question, dispatch, handleFormSubmit } = this.props
     const { selectedAnswer } = this.state
     dispatch(handleSaveQuestion(authedUser, question.id, selectedAnswer))
+    handleFormSubmit()
   }
 
   render() {

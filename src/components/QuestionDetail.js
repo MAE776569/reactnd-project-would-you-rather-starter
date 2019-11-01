@@ -5,6 +5,14 @@ import QuestionForm from "./QuestionForm"
 import QuestionAnswer from "./QuestionAnswer"
 
 class QuestionDetail extends Component {
+  state = {
+    submitted: false
+  }
+
+  handleFormSubmit = () => {
+    this.setState({ submitted: true })
+  }
+
   render() {
     const { authedUser } = this.props
     if (!authedUser) return <Redirect to="/login" />
@@ -17,7 +25,7 @@ class QuestionDetail extends Component {
         <div className="row justify-content-center">
           <div className="col-10 col-md-8 col-lg-6 mt-3 mx-auto p-0">
             <div className="card">
-              {answered ? (
+              {answered || this.state.submitted ? (
                 <QuestionAnswer
                   authedUser={authedUser}
                   user={user}
@@ -26,7 +34,8 @@ class QuestionDetail extends Component {
                 <QuestionForm
                   authedUser={authedUser}
                   user={user}
-                  question={question}/>
+                  question={question}
+                  handleFormSubmit={this.handleFormSubmit} />
               )}
             </div>
           </div>
