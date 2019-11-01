@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { Redirect } from "react-router-dom"
+import { Redirect, withRouter } from "react-router-dom"
+import { handleAddQuestion } from "../actions/questions"
 
 class NewQuestion extends Component{
   state = {
@@ -23,6 +24,18 @@ class NewQuestion extends Component{
       this.setState({ optionTwo: e.target.value })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { optionOne, optionTwo } = this.state
+    const { authedUser, dispatch, history } = this.props
+    dispatch(handleAddQuestion({
+      optionOneText: optionOne,
+      optionTwoText: optionTwo,
+      author: authedUser
+    }))
+    history.push("/")
+  }
+
   render(){
     if(!this.props.authedUser) return <Redirect to="/login" />
 
@@ -39,7 +52,7 @@ class NewQuestion extends Component{
                   <p>Complete the question:</p>
                   <h5>Would you rather...</h5>
                 </div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                   <input type="text" className="form-control mb-3"
                     placeholder="Enter option one text here"
                     value={this.state.optionOne}
@@ -68,4 +81,4 @@ function mapStateToProps(state){
   return { authedUser }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default withRouter(connect(mapStateToProps)(NewQuestion))
