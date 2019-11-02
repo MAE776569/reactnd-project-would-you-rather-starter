@@ -6,6 +6,7 @@ import LoadingBar from "react-redux-loading-bar"
 import Home from "./Home"
 import QuestionDetail from "./QuestionDetail"
 import NewQuestion from "./NewQuestion"
+import Leaderboard from "./Leaderboard"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/question/:id" component={QuestionDetail} />
       <Route path="/new" component={NewQuestion} />
+      <Route path="/leaderboard" component={Leaderboard} />
     </BrowserRouter>
   );
 }
