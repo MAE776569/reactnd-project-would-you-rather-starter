@@ -100,3 +100,14 @@ code {
   white-space: normal !important;
   padding: 4% !important;
 }
+.leaderboard-info{
+  font-weight: 500;
+}
+.leaderboard-badge{
+  border-radius: 20% !important;
+  background-color: #138496;
+  color: white;
+  min-width: 50%;
+  min-height: 50%;
+  padding: 0.85em !important;
+}

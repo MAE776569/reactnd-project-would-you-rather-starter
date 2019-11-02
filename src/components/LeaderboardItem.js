@@ -18,11 +18,11 @@ function LeaderboardItem({ user }) {
           <div className="col-6">
             <div className="card-body py-0">
               <h5 className="card-title">{user.name}</h5>
-              <div className="row border-bottom p-1">
+              <div className="row border-bottom p-1 leaderboard-info">
                 <p className="col-8 mb-0">Answered questions</p>
                 <p className="col-4 text-right mb-0">{answered}</p>
               </div>
-              <div className="row p-1">
+              <div className="row p-1 leaderboard-info">
                 <p className="col-8">Created questions</p>
                 <p className="col-4 text-right">{created}</p>
               </div>
@@ -34,7 +34,7 @@ function LeaderboardItem({ user }) {
                 <h6>Score</h6>
               </div>
               <div className="card-body text-center">
-                <span className="badge">{total}</span>
+                <span className="badge leaderboard-badge">{total}</span>
               </div>
             </div>
           </div>
