@@ -24,8 +24,9 @@ class Home extends Component {
     const { answeredQuestions, unansweredQuestions, users } = this.props
     const { showAnsweredQuestions } = this.state
     const questions = showAnsweredQuestions ? answeredQuestions : unansweredQuestions
+    questions.sort((a, b) => b.timestamp - a.timestamp)
 
-    return ( questions &&
+    return ( questions !== null &&
       <div className="container mt-5">
         <div className="row justify-content-center">
           <div className="col-10 col-md-8 col-lg-6">
@@ -55,14 +56,20 @@ class Home extends Component {
                 </ul>
               </div>
               <div className="card-body">
-                <ul className="list-unstyled">
-                  {questions.map(question => (
-                    <Question key={question.id}
-                      user={users[question.author]}
-                      question={question}
-                      answered={this.state.showAnsweredQuestions}/>
-                  ))}
-                </ul>
+                {questions.length ?
+                  <ul className="list-unstyled">
+                    {questions.map(question => (
+                      <Question key={question.id}
+                        user={users[question.author]}
+                        question={question}
+                        answered={this.state.showAnsweredQuestions}/>
+                    ))}
+                  </ul>
+                : <p className="text-center">{showAnsweredQuestions
+                        ? "No answered questions"
+                        : "No unanswered questions"}
+                  </p>
+                }
               </div>
             </div>
           </div>

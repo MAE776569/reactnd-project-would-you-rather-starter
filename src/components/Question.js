@@ -24,7 +24,7 @@ function Question({ user, question, answered }) {
             </p>
             <Link
               to={{
-                pathname: `/question/${question.id}`,
+                pathname: `/questions/${question.id}`,
                 state: {
                   answered
                 }

@@ -10,7 +10,8 @@ class NewQuestion extends Component{
   }
 
   componentDidMount(){
-    this.input.focus()
+    if(this.props.authedUser)
+      this.input.focus()
   }
 
   isDisabled = () => {

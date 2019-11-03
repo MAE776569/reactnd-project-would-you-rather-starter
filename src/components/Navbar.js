@@ -23,7 +23,7 @@ class Navbar extends Component {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link navbar-link" activeClassName="active" to="/new">
+            <NavLink className="nav-link navbar-link" activeClassName="active" to="/add">
               New Question
             </NavLink>
           </li>
