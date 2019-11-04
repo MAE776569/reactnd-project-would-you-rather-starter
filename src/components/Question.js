@@ -23,12 +23,7 @@ function Question({ user, question, answered }) {
                   .join(" ")}..</small>
             </p>
             <Link
-              to={{
-                pathname: `/questions/${question.id}`,
-                state: {
-                  answered
-                }
-              }}
+              to={`/questions/${question.id}`}
               className="btn btn-block btn-outline-info">
               View Poll
             </Link>

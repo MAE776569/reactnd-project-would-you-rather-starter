@@ -1,16 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { handleGetQuestions } from "../actions/questions"
 import Question from "./Question"
 import { Redirect } from "react-router-dom"
 
 class Home extends Component {
   state = {
     showAnsweredQuestions: false
-  }
-
-  componentDidMount() {
-    this.props.getQuestions()
   }
 
   setQuestions = (showAnsweredQuestions) => {
@@ -67,8 +62,7 @@ class Home extends Component {
                     {questions.map(question => (
                       <Question key={question.id}
                         user={users[question.author]}
-                        question={question}
-                        answered={this.state.showAnsweredQuestions}/>
+                        question={question} />
                     ))}
                   </ul>
                 : <p className="text-center">{showAnsweredQuestions
@@ -106,10 +100,4 @@ function mapStatetoProps(state) {
   return { authedUser }
 }
 
-function mapDispatchToProps(dispatch){
-  return {
-    getQuestions: () => dispatch(handleGetQuestions())
-  }
-}
-
-export default connect(mapStatetoProps, mapDispatchToProps)(Home)
+export default connect(mapStatetoProps)(Home)

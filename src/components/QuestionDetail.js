@@ -14,17 +14,19 @@ class QuestionDetail extends Component {
   }
 
   render() {
-    const { authedUser } = this.props
+    const { authedUser, location } = this.props
     if (!authedUser)
       return <Redirect to={{
         pathname: "/login",
         state: {
-          referrer: this.props.location.pathname
+          referrer: location.pathname
         }
       }} />
 
-    const { answered } = this.props.location.state
-    const { user, question } = this.props
+    if(!this.props.question)
+      return <Redirect to="/404" />
+
+    const { user, question, answered } = this.props
 
     return (
       <div className="container mt-5">
@@ -56,13 +58,23 @@ function mapStateToProps(state, props) {
 
   if (authedUser) {
     const question = state.questions[props.match.params.id]
-    const user = state.users[question.author]
 
-    return {
-      authedUser,
-      user,
-      question
+    if(question){
+      const user = state.users[question.author]
+      const answered = Object.keys(state.users[authedUser].answers).includes(question.id)
+
+      return {
+        authedUser,
+        user,
+        question,
+        answered
+      }
     }
+    else
+      return {
+        authedUser,
+        question
+      }
   }
 
   return { authedUser }

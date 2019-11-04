@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import logo from "../logo.png"
 import { connect } from "react-redux"
 import { handleGetUsers } from "../actions/users"
+import { handleGetQuestions } from "../actions/questions"
 import { authenticateUser } from "../actions/authedUser"
 import { Dropdown } from "react-bootstrap"
 import { withRouter, Redirect } from "react-router-dom"
@@ -12,7 +13,9 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    this.props.getUsers()
+    const { getUsers, getQuestions } = this.props
+    getUsers()
+    getQuestions()
   }
 
   handleChangeUser = user => {
@@ -22,8 +25,8 @@ class Login extends Component {
   isDisabled = () => !Object.keys(this.props.users).includes(this.state.user)
 
   handleSubmit = () => {
-    const { authenticateUser, history } = this.props
-    const redirectTo = this.props.location.state.referrer
+    const { authenticateUser, history, location } = this.props
+    const redirectTo = location.state ? location.state.referrer : "/"
     authenticateUser(this.state.user)
     history.push(redirectTo)
   }
@@ -107,7 +110,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch){
   return {
     getUsers: () => dispatch(handleGetUsers()),
-    authenticateUser: (...args) => dispatch(authenticateUser(...args))
+    authenticateUser: (...args) => dispatch(authenticateUser(...args)),
+    getQuestions: () => dispatch(handleGetQuestions())
   }
 }
 
