@@ -12,7 +12,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(handleGetUsers())
+    this.props.getUsers()
   }
 
   handleChangeUser = user => {
@@ -22,8 +22,9 @@ class Login extends Component {
   isDisabled = () => !Object.keys(this.props.users).includes(this.state.user)
 
   handleSubmit = () => {
-    this.props.dispatch(authenticateUser(this.state.user))
-    this.props.history.push("/")
+    const { authenticateUser, history } = this.props
+    authenticateUser(this.state.user)
+    history.push("/")
   }
 
   render() {
@@ -102,4 +103,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Login))
+function mapDispatchToProps(dispatch){
+  return {
+    getUsers: () => dispatch(handleGetUsers()),
+    authenticateUser: (...args) => dispatch(authenticateUser(...args))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

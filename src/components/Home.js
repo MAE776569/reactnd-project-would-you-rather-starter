@@ -10,7 +10,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(handleGetQuestions())
+    this.props.getQuestions()
   }
 
   setQuestions = (showAnsweredQuestions) => {
@@ -100,4 +100,10 @@ function mapStatetoProps(state) {
   return { authedUser }
 }
 
-export default connect(mapStatetoProps)(Home)
+function mapDispatchToProps(dispatch){
+  return {
+    getQuestions: () => dispatch(handleGetQuestions())
+  }
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Home)

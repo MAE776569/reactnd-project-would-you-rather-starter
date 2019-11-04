@@ -15,9 +15,9 @@ class QuestionForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { authedUser, question, dispatch, handleFormSubmit } = this.props
+    const { authedUser, question, saveQuestion, handleFormSubmit } = this.props
     const { selectedAnswer } = this.state
-    dispatch(handleSaveQuestion(authedUser, question.id, selectedAnswer))
+    saveQuestion(authedUser, question.id, selectedAnswer)
     handleFormSubmit()
   }
 
@@ -78,4 +78,10 @@ class QuestionForm extends Component {
   }
 }
 
-export default connect()(QuestionForm)
+function mapDispatchToProps(dispatch){
+  return {
+    saveQuestion: (...args) => dispatch(handleSaveQuestion(...args))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(QuestionForm)

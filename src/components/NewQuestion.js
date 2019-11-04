@@ -28,12 +28,12 @@ class NewQuestion extends Component{
   handleSubmit = (e) => {
     e.preventDefault()
     const { optionOne, optionTwo } = this.state
-    const { authedUser, dispatch, history } = this.props
-    dispatch(handleAddQuestion({
+    const { authedUser, saveQuestion, history } = this.props
+    saveQuestion({
       optionOneText: optionOne,
       optionTwoText: optionTwo,
       author: authedUser
-    }))
+    })
     history.push("/")
   }
 
@@ -82,4 +82,10 @@ function mapStateToProps(state){
   return { authedUser }
 }
 
-export default withRouter(connect(mapStateToProps)(NewQuestion))
+function mapDispatchToProps(dispatch){
+  return {
+    saveQuestion: (...args) => dispatch(handleAddQuestion(...args))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewQuestion))

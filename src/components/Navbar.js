@@ -7,8 +7,9 @@ import { withRouter } from "react-router-dom"
 class Navbar extends Component {
 
   handleLogout = () => {
-    this.props.dispatch(logoutUser())
-    this.props.history.push("/login")
+    const { logoutUser, history } = this.props
+    logoutUser()
+    history.push("/login")
   }
 
   render() {
@@ -60,4 +61,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Navbar))
+function mapDispatchToProps(dispatch){
+  return {
+    logoutUser: () => dispatch(logoutUser())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))
