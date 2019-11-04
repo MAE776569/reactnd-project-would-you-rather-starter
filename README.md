@@ -1,17 +1,30 @@
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+Would You Rather is a web app that lets the user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+In the app, users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+## Description
+
+The Users has a way to login through the login page. Once the user logs in, the home page is shown.
+
+Information about the logged in user appears on the navigation bar. If someone tries to navigate anywhere by entering the address in the address bar, the user is asked to sign in and then the requested page is shown. The application allows the user to log out and log back in.
+
+Once the user logs in, the user will be able to toggle between his/her answered and unanswered polls on the home page, which is located at the root. The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom). The unanswered questions shown by default, and the name of the logged in user is visible on the page.
+
+Each polling question has a link to the details of that poll. The details of each poll is available at `questions/:question_id`.
+
+## How to start the app
+
+- install all project dependencies with `npm install`
+- start the development server with `npm start`
 
 ## Data
 
 There are two types of objects stored in our database:
 
-* Users
-* Questions
+- Users
+- Questions
 
 ### Users
 
@@ -48,22 +61,22 @@ Voting options are attached to questions. They include:
 
 Your code will talk to the database via 4 methods:
 
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
+- `_getUsers()`
+- `_getQuestions()`
+- `_saveQuestion(question)`
+- `_saveQuestionAnswer(object)`
 
-1) `_getUsers()` Method
+1. `_getUsers()` Method
 
 *Description*: Get all of the existing users from the database.  
 *Return Value*: Object where the key is the user’s id and the value is the user object.
 
-2) `_getQuestions()` Method
+2. `_getQuestions()` Method
 
 *Description*: Get all of the existing questions from the database.  
 *Return Value*: Object where the key is the question’s id and the value is the question object.
 
-3) `_saveQuestion(question)` Method
+3. `_saveQuestion(question)` Method
 
 *Description*: Save the polling question in the database.  
 *Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
@@ -84,7 +97,7 @@ Your code will talk to the database via 4 methods:
 | optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
 |timestamp|String | The time when the question was created|
 
-4) `_saveQuestionAnswer(object)` Method
+4. `_saveQuestionAnswer(object)` Method
 
 *Description*: Save the answer to a particular polling question in the database.
 *Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
@@ -94,7 +107,3 @@ Your code will talk to the database via 4 methods:
 | authedUser | String | The id of the user who answered the question|
 | qid | String | The id of the question that was answered|
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
-
-## Contributing
-
-This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
