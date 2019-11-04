@@ -15,7 +15,13 @@ class QuestionDetail extends Component {
 
   render() {
     const { authedUser } = this.props
-    if (!authedUser) return <Redirect to="/login" />
+    if (!authedUser)
+      return <Redirect to={{
+        pathname: "/login",
+        state: {
+          referrer: this.props.location.pathname
+        }
+      }} />
 
     const { answered } = this.props.location.state
     const { user, question } = this.props

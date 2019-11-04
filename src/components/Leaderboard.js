@@ -6,7 +6,13 @@ import LeaderboardItem from "./LeaderboardItem"
 class Leaderboard extends Component {
   render() {
     const { authedUser, users } = this.props
-    if (!authedUser) return <Redirect to="/login" />
+    if (!authedUser)
+      return <Redirect to={{
+        pathname: "/login",
+        state: {
+          referrer: "/leaderboard"
+        }
+      }} />
 
     return (
       <div className="container mt-5">

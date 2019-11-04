@@ -23,8 +23,9 @@ class Login extends Component {
 
   handleSubmit = () => {
     const { authenticateUser, history } = this.props
+    const redirectTo = this.props.location.state.referrer
     authenticateUser(this.state.user)
-    history.push("/")
+    history.push(redirectTo)
   }
 
   render() {

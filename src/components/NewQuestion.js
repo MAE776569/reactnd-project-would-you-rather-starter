@@ -38,7 +38,13 @@ class NewQuestion extends Component{
   }
 
   render(){
-    if(!this.props.authedUser) return <Redirect to="/login" />
+    if(!this.props.authedUser)
+      return <Redirect to={{
+        pathname: "/login",
+        state: {
+          referrer: "/add"
+        }
+      }} />
 
     return (
       <div className="container mt-5">

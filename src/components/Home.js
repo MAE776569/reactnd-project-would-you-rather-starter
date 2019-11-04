@@ -19,7 +19,13 @@ class Home extends Component {
   }
 
   render() {
-    if (!this.props.authedUser) return <Redirect to="/login" />
+    if (!this.props.authedUser)
+      return <Redirect to={{
+        pathname: "/login",
+        state: {
+          referrer: "/"
+        }
+      }} />
 
     const { answeredQuestions, unansweredQuestions, users } = this.props
     const { showAnsweredQuestions } = this.state
